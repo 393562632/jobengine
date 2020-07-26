@@ -1,0 +1,31 @@
+﻿
+{
+
+    "desc":"测试",
+    "gmtCreate":1582778611961,
+    "questionList":[
+        {
+            "gmtCreate":1582778611962,
+            "questionContent":"测试",
+            "questionType":"1"
+        },
+        {
+            "choiceList":[
+                {
+                    "choiceContent":"A"
+                },
+                {
+                    "choiceContent":"A"
+                }
+            ],
+            "gmtCreate":1582778611962,
+            "questionContent":"测试",
+            "questionType":"2"
+        }
+    ],
+    "questionnareId":111,
+    "questionnareUrl":"url",
+    "title":"测试问券",
+    "userId":123
+
+}

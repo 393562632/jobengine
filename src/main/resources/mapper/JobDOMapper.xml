@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.chinatelecom.esurvey.dao.JobDOMapper">
+  <resultMap id="BaseResultMap" type="cn.chinatelecom.esurvey.entity.JobDO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="config" jdbcType="VARCHAR" property="config" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from job
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.chinatelecom.esurvey.entity.JobDO">
+    insert into job (id, config, `status`
+      )
+    values (#{id,jdbcType=INTEGER}, #{config,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.chinatelecom.esurvey.entity.JobDO">
+    update job
+    set config = #{config,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, config, `status`
+    from job
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, config, `status`
+    from job
+  </select>
+</mapper>
