@@ -52,7 +52,8 @@ public class JobController {
             return restResult;
         }
         try {
-            jobService.InsertConfig(jobConfig);
+            Integer id = jobService.InsertConfig(jobConfig);
+            logger.info(" id  =  " +  id);
         } catch (Exception e) {
             logger.error("/jobEngine/addConfig 接口出错 timer : " + timer, e);
             return RestResult.genFailResult(AlpacaErrorCode.NULL_OBJ.getCode(), e.getMessage());

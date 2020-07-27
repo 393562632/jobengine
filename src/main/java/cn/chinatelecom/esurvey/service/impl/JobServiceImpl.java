@@ -24,12 +24,13 @@ public class JobServiceImpl implements JobService {
 
 
     @Override
-    public void InsertConfig(JobConfig jobConfig) {
+    public Integer InsertConfig(JobConfig jobConfig) {
         String config = JSON.toJSONString(jobConfig);
         JobDO jobDO = new JobDO();
         jobDO.setConfig(config);
         jobDO.setStatus(0);
         jobDOMapper.insert(jobDO);
+        return jobDO.getId();
     }
 
     @Override

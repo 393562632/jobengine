@@ -7,7 +7,7 @@ import java.util.List;
 public interface JobService {
 
 
-    void InsertConfig(JobConfig jobConfig);
+    Integer InsertConfig(JobConfig jobConfig);
 
     List<JobConfig> getAll();
 

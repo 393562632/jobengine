@@ -10,7 +10,7 @@
     delete from job
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.chinatelecom.esurvey.entity.JobDO">
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="id"  parameterType="cn.chinatelecom.esurvey.entity.JobDO">
     insert into job (id, config, `status`
       )
     values (#{id,jdbcType=INTEGER}, #{config,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
