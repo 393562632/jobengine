@@ -15,6 +15,8 @@ public class DataxJob implements Runnable {
 
     String filePath;
 
+    String jsonPath;
+
     Boolean state;
 
     int id;
@@ -36,7 +38,7 @@ public class DataxJob implements Runnable {
         while(state) {
 
             System.out.println("I am  run " );
-            String[] arguments = new String[] {"python",filePath+"test.py",String.valueOf(id)};
+            String[] arguments = new String[] {"python",filePath+"datax.py ",jsonPath+String.valueOf(id)+".json"};
             try {
                 Process process = Runtime.getRuntime().exec(arguments);
                 BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
@@ -67,10 +69,12 @@ public class DataxJob implements Runnable {
      * @param frequency
      * @param state
      */
-    public DataxJob(Long frequency, Boolean state,String filePath,int id) {
+    public DataxJob(Long frequency, Boolean state,String filePath,int id,String jsonPath) {
         this.frequency = frequency;
         this.state = state;
         this.filePath=filePath;
         this.id=id;
+        this.jsonPath=jsonPath;
+
     }
 }

@@ -11,7 +11,7 @@ public interface JobService {
 
     List<JobConfig> getAll();
 
-    void startJob(int id,String path);
+    void startJob(int id,String pyPath,String jsonPath);
 
     void stopJob(int id);
 

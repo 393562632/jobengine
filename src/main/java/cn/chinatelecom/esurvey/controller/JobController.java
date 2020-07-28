@@ -39,6 +39,8 @@ public class JobController {
 
     @Value("${json.file.path}")
     private String filePath;
+    @Value("${py.file.path}")
+    private String pyFilePath;
 
     /**
      * 增加新配置
@@ -100,7 +102,7 @@ public class JobController {
         String path = "/jobEngine/start/{id}";
         ControllerLogUtils.LoggingBefore(id, path, timer);
         try {
-            jobService.startJob(id,filePath);
+            jobService.startJob(id,pyFilePath,filePath);
             restResult = RestResult.genSuccessResult("启动成功");
             ControllerLogUtils.LoggingAfter(JSON.toJSONString(restResult), path, timer);
             return restResult;
