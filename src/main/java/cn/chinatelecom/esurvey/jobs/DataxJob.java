@@ -1,10 +1,14 @@
 package cn.chinatelecom.esurvey.jobs;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.io.*;
 
 public class DataxJob implements Runnable {
+
+    private final static Logger logger = LoggerFactory.getLogger(DataxJob.class);
 
     Long frequency;
 
@@ -38,13 +42,13 @@ public class DataxJob implements Runnable {
                 BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
                 String line = null;
                 while ((line = in.readLine()) != null) {
-                    System.out.println("line:"+line);
+                    logger.info("line:"+line);
                 }
                 in.close();
                 //java代码中的process.waitFor()返回值为0表示我们调用python脚本成功，
                 //返回值为1表示调用python脚本失败，这和我们通常意义上见到的0与1定义正好相反
                 int re = process.waitFor();
-                System.out.println("re:"+re);
+                logger.info("re:"+re);
                 Thread.sleep(frequency * 1000);
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
