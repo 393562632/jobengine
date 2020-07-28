@@ -40,11 +40,11 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public void startJob(int id) {
+    public void startJob(int id,String path) {
         JobDO jobDO = jobDOMapper.selectByPrimaryKey(id);
         String config = jobDO.getConfig();
         JobConfig jobConfig = JSON.parseObject(config, JobConfig.class);
-        DataxJob dataxJob = new DataxJob(jobConfig.getFrequency(), Boolean.TRUE);
+        DataxJob dataxJob = new DataxJob(jobConfig.getFrequency(), Boolean.TRUE,path,id);
         Container.start(dataxJob, id);
     }
 

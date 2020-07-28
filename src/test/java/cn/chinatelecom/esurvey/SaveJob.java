@@ -1,8 +1,12 @@
 package cn.chinatelecom.esurvey;
 
-import cn.chinatelecom.esurvey.comm.UUIDUtil;
+import cn.chinatelecom.esurvey.entity.Cloumn;
 import cn.chinatelecom.esurvey.entity.JobConfig;
-import cn.chinatelecom.esurvey.entity.RelationItem;
+import cn.chinatelecom.esurvey.entity.readers.Parameter;
+import cn.chinatelecom.esurvey.entity.readers.Reader;
+import cn.chinatelecom.esurvey.entity.readers.RelationItem;
+import cn.chinatelecom.esurvey.entity.writers.WParameter;
+import cn.chinatelecom.esurvey.entity.writers.Writer;
 import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -13,9 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SaveJob {
 
@@ -27,26 +29,32 @@ public class SaveJob {
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://localhost/jobEngine/addConfig";
         JobConfig jobConfig = new JobConfig();
-        jobConfig.setFrequency(1);
-        jobConfig.setUrl("127.9.2.3");
-        //  请求参数, key 为对应的值 value为对应的值
-        Map<String, String> requestMap = new HashMap<>();
-        requestMap.put("sex", "1");
-        requestMap.put("name", "jackey");
-        jobConfig.setRequestMap(requestMap);
-        //  字段映射关系列表
-        List<RelationItem> relationItemList = new ArrayList<>();
-        RelationItem relationItem = new RelationItem();
-        relationItem.setResponseName("sex");
-        relationItem.setHiveName("sex");
-        relationItem.setType("int");
-        relationItemList.add(relationItem);
-        RelationItem relationItem2 = new RelationItem();
-        relationItem2.setResponseName("name");
-        relationItem2.setHiveName("name");
-        relationItem2.setType("String");
-        relationItemList.add(relationItem2);
-        jobConfig.setRelationItemList(relationItemList);
+        jobConfig.setFrequency(1L);
+        Reader reader = new Reader();
+        Parameter parameter = new Parameter();
+        List<RelationItem> relationItems = new ArrayList<>();
+        parameter.setRequestParam(relationItems);
+        parameter.setSuccessCode("200");
+        parameter.setSuccessCodeJosnPath("code");
+        parameter.setDataJosnPath("data");
+        List<Cloumn> cloumns = new ArrayList<>();
+        cloumns.add(new Cloumn("name","String"));
+        cloumns.add(new Cloumn("age","int"));
+        parameter.setColumn(cloumns);
+        reader.setParameter(parameter);
+        jobConfig.setReader(reader);
+        Writer writer = new Writer();
+        WParameter parameter1 = new WParameter();
+        parameter1.setDefaultFS("hdfs://xxx:port");
+        parameter1.setFileType("orc");
+        parameter1.setPath("/user/hive/warehouse/writerorc.db/orcfull");
+        parameter1.setFileName("xxxxx");
+        List<Cloumn> cloumns2 = new ArrayList<>();
+        cloumns2.add(new Cloumn("name","String"));
+        cloumns2.add(new Cloumn("age","int"));
+        parameter1.setCloumn(cloumns2);
+        writer.setParameter(parameter1);
+        jobConfig.setWriter(writer);
         String body = JSON.toJSONString(jobConfig);
         HttpHeaders headers = new HttpHeaders();
         MediaType type = MediaType.parseMediaType("application/json; charset=UTF-8");

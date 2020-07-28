@@ -1,8 +1,12 @@
 package cn.chinatelecom.esurvey.dao;
 
 import cn.chinatelecom.esurvey.entity.JobDO;
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+@Mapper
+@Repository
 public interface JobDOMapper {
     int deleteByPrimaryKey(Integer id);
 

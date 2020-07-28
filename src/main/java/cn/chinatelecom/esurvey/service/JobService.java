@@ -11,7 +11,7 @@ public interface JobService {
 
     List<JobConfig> getAll();
 
-    void startJob(int id);
+    void startJob(int id,String path);
 
     void stopJob(int id);
 
