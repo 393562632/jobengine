@@ -15,9 +15,11 @@ import java.util.List;
 @Getter
 public class Parameter {
     //接口访问地址
-    private String httpUrl="";
+    private String url="";
     //请求方式
     private String httpMethod="get";
+
+    private String header;
     //请求参数
     private List<RelationItem> requestParam;
     //请求返回码值
@@ -32,8 +34,9 @@ public class Parameter {
     @Override
     public String toString() {
         return "Parameter{" +
-                "httpUrl='" + httpUrl + '\'' +
+                "url='" + url + '\'' +
                 ", httpMethod='" + httpMethod + '\'' +
+                ", header='" + header + '\'' +
                 ", requestParam=" + requestParam +
                 ", successCode='" + successCode + '\'' +
                 ", successCodeJosnPath='" + successCodeJosnPath + '\'' +
