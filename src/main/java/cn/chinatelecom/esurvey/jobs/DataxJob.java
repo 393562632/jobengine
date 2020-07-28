@@ -45,6 +45,7 @@ public class DataxJob implements Runnable {
                 String line = null;
                 while ((line = in.readLine()) != null) {
                     logger.info("line:"+line);
+                    logger.info("job id = " + id + "startting");
                 }
                 in.close();
                 //java代码中的process.waitFor()返回值为0表示我们调用python脚本成功，
