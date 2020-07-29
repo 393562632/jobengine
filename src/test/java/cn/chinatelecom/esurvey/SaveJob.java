@@ -27,9 +27,10 @@ public class SaveJob {
     @Test
     public void SaveJob() {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://192.168.9.171:8989/jobEngine/addConfig";
+        String url = "http://192.168.9.171:8980/jobEngine/addConfig";
         JobConfig jobConfig = new JobConfig();
         jobConfig.setFrequency(1L);
+        jobConfig.setApiName("test");
         Reader reader = new Reader();
         Parameter parameter = new Parameter();
         List<RelationItem> relationItems = new ArrayList<>();
@@ -74,7 +75,7 @@ public class SaveJob {
     @Test
     public void getAll() {
         RestTemplate restTemplate = new RestTemplate();
-        String accessTokenRequestUrl = "http://localhost/jobEngine/listAll";
+        String accessTokenRequestUrl = "http://192.168.9.171:8980/jobEngine/listAll";
         String jstoken = restTemplate.getForObject(accessTokenRequestUrl,String.class);
         logger.info(jstoken);
     }
@@ -91,7 +92,7 @@ public class SaveJob {
     @Test
     public void startJob2() {
         RestTemplate restTemplate = new RestTemplate();
-        String accessTokenRequestUrl = "http://192.168.9.171:8989/jobEngine/start/4";
+        String accessTokenRequestUrl = "http://192.168.9.171:8980/jobEngine/start/6";
         String jstoken = restTemplate.getForObject(accessTokenRequestUrl,String.class);
         logger.info(jstoken);
     }
@@ -99,7 +100,7 @@ public class SaveJob {
     @Test
     public void stopJob() {
         RestTemplate restTemplate = new RestTemplate();
-        String accessTokenRequestUrl = "http://localhost/jobEngine/stop/1";
+        String accessTokenRequestUrl = "http://192.168.9.171:8980/jobEngine/stop/6";
         String jstoken = restTemplate.getForObject(accessTokenRequestUrl,String.class);
         logger.info(jstoken);
     }

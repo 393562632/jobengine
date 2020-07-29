@@ -17,7 +17,7 @@ import lombok.ToString;
 @ToString
 public class RestResult<T> {
 
-    private Integer success;
+    private Integer status;
 
     private Integer code;
 
@@ -51,7 +51,7 @@ public class RestResult<T> {
     }
 
     public static <T> Boolean isSucess(RestResult<T> restResult) {
-        if (restResult.getSuccess() == 0) {
+        if (restResult.getStatus() == 0) {
             return true;
         } else {
             return false;

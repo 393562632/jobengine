@@ -1,6 +1,8 @@
 package cn.chinatelecom.esurvey.service;
 
 import cn.chinatelecom.esurvey.entity.JobConfig;
+import cn.chinatelecom.esurvey.entity.JobDO;
+import cn.chinatelecom.esurvey.entity.requestResult;
 import cn.chinatelecom.esurvey.model.vo.AnswerVO;
 import java.util.List;
 
@@ -9,7 +11,7 @@ public interface JobService {
 
     Integer InsertConfig(JobConfig jobConfig);
 
-    List<JobConfig> getAll();
+    List<requestResult> getAll();
 
     void startJob(int id,String pyPath,String jsonPath);
 

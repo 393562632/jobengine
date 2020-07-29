@@ -16,6 +16,7 @@ public class JobConfig {
     //  job运行评率，单位是秒
     Long frequency;
 
+    String apiName;
     //读的配置信息
     private Reader reader;
 

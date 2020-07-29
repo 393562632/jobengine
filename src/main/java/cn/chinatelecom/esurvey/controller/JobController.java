@@ -6,6 +6,7 @@ import cn.chinatelecom.esurvey.comm.BizException;
 import cn.chinatelecom.esurvey.comm.LoggerUtils;
 import cn.chinatelecom.esurvey.config.JsonWriteFileConfig;
 import cn.chinatelecom.esurvey.entity.JobConfig;
+import cn.chinatelecom.esurvey.entity.requestResult;
 import cn.chinatelecom.esurvey.model.vo.QuestionnaireVO;
 import cn.chinatelecom.esurvey.model.vo.vocode.AlpacaErrorCode;
 import cn.chinatelecom.esurvey.service.JobService;
@@ -82,8 +83,8 @@ public class JobController {
         ControllerLogUtils.LoggingBefore(null, path, timer);
         RestResult restResult = new RestResult();
         try {
-            List<JobConfig> list = jobService.getAll();
-            restResult.setData(list);
+            List<requestResult> list = jobService.getAll();
+            restResult = RestResult.genSuccessResult(list);
         } catch (Exception e) {
             logger.error("/jobEngine/addConfig 接口出错 timer : " + timer, e);
             return RestResult.genFailResult(AlpacaErrorCode.NULL_OBJ.getCode(), e.getMessage());

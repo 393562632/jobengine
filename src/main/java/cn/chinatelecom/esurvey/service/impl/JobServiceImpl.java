@@ -3,15 +3,19 @@ package cn.chinatelecom.esurvey.service.impl;
 import cn.chinatelecom.esurvey.dao.JobDOMapper;
 import cn.chinatelecom.esurvey.entity.JobConfig;
 import cn.chinatelecom.esurvey.entity.JobDO;
+import cn.chinatelecom.esurvey.entity.requestResult;
 import cn.chinatelecom.esurvey.jobs.Container;
 import cn.chinatelecom.esurvey.jobs.DataxJob;
 import cn.chinatelecom.esurvey.service.JobService;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.JsonObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("JobService")
@@ -34,9 +38,25 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public List<JobConfig> getAll() {
-        List list = jobDOMapper.selectAll();
-        return list;
+    public List<requestResult> getAll() {
+        List<requestResult> results = new ArrayList<>();
+        List<JobDO> list = (List<JobDO>)jobDOMapper.selectAll();
+        for (JobDO temp : list) {
+            requestResult result = new requestResult();
+            Integer id = temp.getId();
+            DataxJob dataxJob = Container.contain.get(id);
+            if(dataxJob!=null){
+                result.setStatus(0);
+            }else{
+                result.setStatus(1);
+            }
+            JSONObject jsonObject = JSONObject.parseObject(temp.getConfig());
+          result.setApiName(jsonObject.get("apiName").toString());
+          result.setId(temp.getId());
+          result.setFrequency(Long.parseLong(jsonObject.get("frequency").toString()));
+          results.add(result);
+        }
+        return results;
     }
 
     @Override

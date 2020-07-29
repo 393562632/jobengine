@@ -7,6 +7,7 @@ public class JobDO {
 
     private Integer status;
 
+
     public Integer getId() {
         return id;
     }
