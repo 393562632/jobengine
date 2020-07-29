@@ -38,7 +38,12 @@ public class DataxJob implements Runnable {
         while(state) {
 
             System.out.println("I am  run " );
-            String[] arguments = new String[] {"python",filePath+"datax.py ",jsonPath+String.valueOf(id)+".json"};
+            System.out.println(filePath);
+            System.out.println(jsonPath+String.valueOf(id));
+            String arguments = "python "+filePath+"datax.py "+jsonPath+String.valueOf(id)+".json";
+            logger.info(arguments);
+            System.out.println(arguments);
+
             try {
                 Process process = Runtime.getRuntime().exec(arguments);
                 BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));

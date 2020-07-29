@@ -12,5 +12,5 @@ import lombok.Setter;
 @Getter
 public class Speed {
 
-    private Integer channel=5;
+    private Integer channel=2;
 }

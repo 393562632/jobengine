@@ -19,11 +19,11 @@ public class WParameter {
     //文件格式
     private String fileType="orc";
     //存储路径
-    private String Path;
+    private String path;
     //文件名
     private String fileName;
     //写入的字段
-    private List<Cloumn> cloumn;
+    private List<Cloumn> column;
     //写入的方式
     private String writeMode="append";
     //文件分割符
@@ -37,9 +37,9 @@ public class WParameter {
         return "WParameter{" +
                 "defaultFS='" + defaultFS + '\'' +
                 ", fileType='" + fileType + '\'' +
-                ", Path='" + Path + '\'' +
+                ", Path='" + path + '\'' +
                 ", fileName='" + fileName + '\'' +
-                ", cloumn=" + cloumn +
+                ", cloumn=" + column +
                 ", writeMode='" + writeMode + '\'' +
                 ", fieldDelimiter='" + fieldDelimiter + '\'' +
                 ", compress='" + compress + '\'' +

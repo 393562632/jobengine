@@ -15,19 +15,21 @@ import java.util.List;
 @Getter
 public class Parameter {
     //接口访问地址
-    private String url="";
+    private List<String> url;
     //请求方式
     private String httpMethod="get";
 
-    private String header;
+    private String header="";
+
+    private int delayTime;
     //请求参数
     private List<RelationItem> requestParam;
     //请求返回码值
-    private String successCode;
+    private int successCode;
     //请求返回码
-    private String successCodeJosnPath;
+    private String successCodeJsonPath;
     //返回值json中取那个字段的值
-    private String dataJosnPath;
+    private String dataJsonPath;
 
     private List<Cloumn> column;
 
@@ -39,8 +41,8 @@ public class Parameter {
                 ", header='" + header + '\'' +
                 ", requestParam=" + requestParam +
                 ", successCode='" + successCode + '\'' +
-                ", successCodeJosnPath='" + successCodeJosnPath + '\'' +
-                ", dataJosnPath='" + dataJosnPath + '\'' +
+                ", successCodeJosnPath='" + successCodeJsonPath + '\'' +
+                ", dataJosnPath='" + dataJsonPath + '\'' +
                 ", column=" + column +
                 '}';
     }
