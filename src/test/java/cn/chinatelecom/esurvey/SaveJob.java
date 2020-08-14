@@ -27,7 +27,7 @@ public class SaveJob {
     @Test
     public void SaveJob() {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://192.168.9.171:8980/jobEngine/addConfig";
+        String url = "http://125.124.55.30:8989/jobEngine/addConfig";
         JobConfig jobConfig = new JobConfig();
         jobConfig.setFrequency(1L);
         jobConfig.setApiName("test");
@@ -35,7 +35,7 @@ public class SaveJob {
         Parameter parameter = new Parameter();
         List<RelationItem> relationItems = new ArrayList<>();
         List<String> url1 = new ArrayList<>();
-        url1.add("http://9p8yse.natappfree.cc/api?sex=1");
+        url1.add("http://uasmed.natappfree.cc/api?sex=1");
         parameter.setUrl(url1);
         parameter.setRequestParam(relationItems);
         parameter.setHeader("");
@@ -51,9 +51,9 @@ public class SaveJob {
         jobConfig.setReader(reader);
         Writer writer = new Writer();
         WParameter parameter1 = new WParameter();
-        parameter1.setDefaultFS("hdfs://192.168.9.180:9000");
+        parameter1.setDefaultFS("hdfs://datacenter");
         parameter1.setFileType("orc");
-        parameter1.setPath("/user/hive/warehouse/orc_table");
+        parameter1.setPath("/warehouse/tablespace/managed/hive/orc_table");
         parameter1.setFileName("orc_table");
         List<Cloumn> cloumns2 = new ArrayList<>();
         cloumns2.add(new Cloumn("col1","STRING"));
@@ -75,11 +75,10 @@ public class SaveJob {
     @Test
     public void getAll() {
         RestTemplate restTemplate = new RestTemplate();
-        String accessTokenRequestUrl = "http://192.168.9.171:8980/jobEngine/listAll";
+        String accessTokenRequestUrl = "http://125.124.55.30:8989/jobEngine/listAll";
         String jstoken = restTemplate.getForObject(accessTokenRequestUrl,String.class);
         logger.info(jstoken);
     }
-
 
     @Test
     public void startJob() {
@@ -92,7 +91,7 @@ public class SaveJob {
     @Test
     public void startJob2() {
         RestTemplate restTemplate = new RestTemplate();
-        String accessTokenRequestUrl = "http://192.168.9.171:8980/jobEngine/start/6";
+        String accessTokenRequestUrl = "http://125.124.55.30:8989/jobEngine/start/2";
         String jstoken = restTemplate.getForObject(accessTokenRequestUrl,String.class);
         logger.info(jstoken);
     }
@@ -100,7 +99,7 @@ public class SaveJob {
     @Test
     public void stopJob() {
         RestTemplate restTemplate = new RestTemplate();
-        String accessTokenRequestUrl = "http://192.168.9.171:8980/jobEngine/stop/6";
+        String accessTokenRequestUrl = "http://125.124.55.30:8989/jobEngine/stop/2";
         String jstoken = restTemplate.getForObject(accessTokenRequestUrl,String.class);
         logger.info(jstoken);
     }
